@@ -23,7 +23,7 @@ async function ls(directory) {
   	let filePath = path.join(directory, fileName)
   	let sampFile = await fs.stat(filePath)
   	if(!sampFile.isDirectory()){
-  		process.stdout.write(fileName+"\n")
+  		process.stdout.write(filePath+"\n")
   	} else{
   		if(recursiveFlag){
   		    ls(filePath)
