@@ -3,13 +3,28 @@
 require('./helper');
 
 let fs = require('fs').promise
-let path = require('path')
-let {dir} = require('yargs')
-    .default('dir', __dirname)
-    .argv 
-let recursiveFlag = require('yargs').argv.R
+let dirName = require('yargs').argv
 
-async function ls(directory) {
+async function rm() {
+	let stat = await fs.stat(dirName._[0])
+	if(!stat.isDirectory()){
+		console.log("Deleting file")
+		await fs.unlink(dirName._[0])
+	}else {
+
+	}
+	
+}
+
+function deleteFile(fName){
+	await fs.unlink(fName)
+}
+
+function deleteDir(nameOfDir){
+	awair fs.rmdir(nameOfDir)
+}
+
+async function rm(directory) {
   // Use 'await' inside 'async function's
   console.log('Executing ls function...')
   let stat = await fs.stat(directory)
@@ -32,4 +47,4 @@ async function ls(directory) {
   }
 }
 
-ls(dir)
+rm(dirName._[0])
